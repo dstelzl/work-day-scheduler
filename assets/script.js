@@ -13,20 +13,36 @@ WHEN I refresh the page
 THEN the saved events persist */
 
 
-var currentDay = $('#currentDay');
-var dateEl = $('<h3>');
-dateEl.text(moment($("#date_val").val()).format('dddd, MM Do YYYY'));
+$('#currentDay').text(moment($("#date_val").val()).format('dddd, MM Do YYYY'))
 
-currentDay.append(dateEl);
 
-$('.container').on('click', '.grade', function(){
-    var parentId = ($(this).parent().attr('data-id'));
-    var name = ($(this).prev().val());
-    localStorage.setItem(parentId, name);
-});
+function getHours (){
+    var currentHour = moment().format('HH');
+    console.log(currentHour);
+    for (var i = 9; i <= 17; i++){
+        if (i < currentHour) $(`#hour${i}`).addClass('past');
+        if (i === currentHour) $(`#hour${i}`).addClass('present');
+        if (i > currentHour) $(`#hour${i}`).addClass('future');
+    }
+}
+function saveNote(event){
+console.log(event);
 
-$('.name').each(function(){
-    var parentId = ($(this).parent().attr('data-id'));
-    var name = localStorage.getItem(parentId);
-    $(this).text(name);
-});
+if (event.target.className === "saveBtn"){
+    console.log('savesomething')
+    saveThis(event.target.previousElementSibling.id, event.target.previousElementSibling.value) 
+}
+}
+function saveThis(hour, note){
+console.log(hour, note)
+var ls= JSON.parse(localStorage.getItem('scheduler'))
+if (!ls ) ls = {
+
+}
+ls[hour] = note;
+localStorage.setItem('scheduler', JSON.stringify(ls))
+}
+
+$('.time-block').on("click", saveNote);
+
+getHours()
