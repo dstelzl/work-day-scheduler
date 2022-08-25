@@ -21,7 +21,7 @@ function getHours (){
     console.log(currentHour);
     for (var i = 9; i <= 17; i++){
         if (i < currentHour) $(`#hour${i}`).addClass('past');
-        if (i === currentHour) $(`#hour${i}`).addClass('present');
+        if (i == currentHour) $(`#hour${i}`).addClass('present');
         if (i > currentHour) $(`#hour${i}`).addClass('future');
     }
 }
