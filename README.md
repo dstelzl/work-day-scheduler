@@ -6,7 +6,7 @@ The Work Day Scheduler is designed to display the current day at the top of the 
 
 ## Visuals
 
-![Screenshot of Workday Scheduler Application](./assets/work-day-scheduler-screenshot.jpg )
+![Screenshot of Workday Scheduler Application](./assets/workday-scheduler-screenshot.jpg )
 
 ## Contributors
 
